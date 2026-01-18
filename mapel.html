@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jadwal Sekolah Harian</title>
+    <style>
+        /* Tema pastel yang tenang */
+        body {
+            font-family: 'Arial', sans-serif; /* Font yang lembut dan mudah dibaca */
+            background: linear-gradient(to bottom, #f0e6ff, #e6f7ff); /* Gradien pastel yang halus */
+            color: #4a4a4a; /* Warna teks netral */
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            min-height: 100vh;
+        }
+        h1 {
+            color: #7a7a7a; /* Abu-abu pastel yang redup */
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5); /* Bayangan halus untuk kedalaman */
+        }
+        .schedule-container {
+            background: rgba(255, 255, 255, 0.8); /* Overlay putih semi-transparan untuk ketenangan */
+            border-radius: 15px; /* Sudut melengkung yang lembut */
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Bayangan lembut */
+        }
+        .day-display {
+            font-size: 1.5em;
+            color: #5a9bd4; /* Biru pastel yang lembut */
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #ffe6f0; /* Pink pastel yang ringan */
+            margin: 8px 0;
+            padding: 12px;
+            border-radius: 10px; /* Melengkung untuk kelembutan */
+            border-left: 5px solid #b3d9ff; /* Aksen biru pastel yang halus */
+            transition: background 0.3s ease; /* Transisi halus untuk interaksi tenang */
+        }
+        li:hover {
+            background: #e6ffe6; /* Hijau pastel yang ringan saat hover */
+        }
+        .no-classes {
+            color: #8a8a8a; /* Redup untuk akhir pekan */
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <h1>Jadwal Sekolah Harian</h1>
+    <div class="schedule-container">
+        <div id="day-display" class="day-display"></div>
+        <ul id="schedule-list"></ul>
+    </div>
+    <script>
+        // Data jadwal (sesuaikan dengan jadwal sekolah Anda)
+        const schedule = {
+            Senin: ["IPA,IPS,AQIDAH,MTK,B.INGGRIS"],
+            Selasa: ["SUND,IPS,B.INDO,IPA"],
+            Rabu: ["B.INDO,BK,OLAHRAGA,B.INGGRIS"],
+            Kamis: ["PKN,B.INDO,INFORMATIKA,PRAKARYA"],
+            Jumat: ["MTK,SENBUD,PAI"],
+            Sabtu: ["Tidak ada kelas - Nikmati akhir pekan!"],
+            Minggu: ["Tidak ada kelas - Nikmati akhir pekan!"]
+        };
+
+        // Dapatkan hari saat ini dan tampilkan jadwal
+        const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+        const today = new Date().getDay();
+        const dayName = days[today];
+        const classes = schedule[dayName] || ["Jadwal tidak tersedia"];
+
+        document.getElementById('day-display').textContent = `Hari ini adalah ${dayName}`;
+        const list = document.getElementById('schedule-list');
+        classes.forEach(cls => {
+            const li = document.createElement('li');
+            li.textContent = cls;
+            if (cls.includes("Tidak ada kelas")) {
+                li.classList.add('no-classes');
+            }
+            list.appendChild(li);
+        });
+    </script>
+</body>
+</html>
